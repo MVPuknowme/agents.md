@@ -1,68 +1,39 @@
 import React from "react";
-import ClipboardIcon from "./icons/ClipboardIcon";
 import CopyIcon from "./icons/CopyIcon";
 
 interface CodeExampleProps {
-  /** Markdown content to display; falls back to default example if not provided */
   code?: string;
-  /** Optional URL for "View on GitHub" link */
-  href?: string;
-  /** If true, render only the code block without the section wrapper */
   compact?: boolean;
-  /** Override Tailwind height classes for the <pre> block */
   heightClass?: string;
-
-  /**
-   * When true, vertically center the content and copy button – useful for
-   * single-line shell commands shown inside a short container (e.g. FAQ).
-   */
   centerVertically?: boolean;
 }
 
-export const HERO_AGENTS_MD = `# AGENTS.md
+export const HERO_AGENTS_MD = `workflow: tablet-pay-lien
+steps:
+  - capture: customer signature, driver license scan, VIN
+  - present: repair order + lien notice with auto-calc storage fees
+  - collect: card on file + optional down payment
+  - trigger: weekly digest email for unpaid tickets
+  - release: payment clears -> lien flag removed`;
 
-## Setup commands
-- Install deps: \`pnpm install\`
-- Start dev server: \`pnpm dev\`
-- Run tests: \`pnpm test\`
+const EXAMPLE_AGENTS_MD = `# Tablet pay + lien enforcement blueprint
 
-## Code style
-- TypeScript strict mode
-- Single quotes, no semicolons
-- Use functional patterns where possible`;
+## Kiosk checklist (service advisor)
+- validate VIN and mileage at drop-off
+- collect payment intent token on the tablet
+- mark lien flag if balance > $0 after warranty adjustments
 
-const EXAMPLE_AGENTS_MD = `# Sample AGENTS.md file
+## Automated follow-ups
+- Day 0: send signed work order + warranty coverage summary
+- Day 3: SMS and email past-due notice with payment link
+- Weekly: resend digest of unpaid vehicles to accounting (cron: Sunday 6pm)
 
-## Dev environment tips
-- Use \`pnpm dlx turbo run where <project_name>\` to jump to a package instead \
-of scanning with \`ls\`.
-- Run \`pnpm install --filter <project_name>\` to add the package to your \
-workspace so Vite, ESLint, and TypeScript can see it.
-- Use \`pnpm create vite@latest <project_name> -- --template react-ts\` to \
-spin up a new React + Vite package with TypeScript checks ready.
-- Check the name field inside each package's package.json to confirm the \
-right name—skip the top-level one.
+## Safety rails
+- refuse release workflow if lien flag present and balance > 0
+- allow warranty-only releases when approval code attached
+- export lien ledger to PDF for state filings
+`;
 
-## Testing instructions
-- Find the CI plan in the .github/workflows folder.
-- Run \`pnpm turbo run test --filter <project_name>\` to run every check \
-defined for that package.
-- From the package root you can just call \`pnpm test\`. The commit should \
-pass all tests before you merge.
-- To focus on one step, add the Vitest pattern: \`pnpm vitest run -t "<test \
-name>"\`.
-- Fix any test or type errors until the whole suite is green.
-- After moving files or changing imports, run \`pnpm lint --filter \
-<project_name>\` to be sure ESLint and TypeScript rules still pass.
-- Add or update tests for the code you change, even if nobody asked.
-
-## PR instructions
-- Title format: [<project_name>] <Title>
-- Always run \`pnpm lint\` and \`pnpm test\` before committing.`;
-
-/**
- * Very lightly highlight the Markdown without fully parsing it.
- */
 function parseMarkdown(md: string): React.ReactNode[] {
   const lines = md.split("\n");
   const elements: React.ReactNode[] = [];
@@ -70,7 +41,6 @@ function parseMarkdown(md: string): React.ReactNode[] {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // Handle headers
     if (line.startsWith("# ") || line.startsWith("## ") || line.startsWith("### ")) {
       elements.push(
         <div key={i} className="font-bold">
@@ -78,17 +48,14 @@ function parseMarkdown(md: string): React.ReactNode[] {
         </div>
       );
     } else if (line.startsWith("- ")) {
-      // Handle list items with inline code
       elements.push(
         <div key={i}>
           {renderLineWithInlineCode(line)}
         </div>
       );
     } else if (line.trim() === "") {
-      // Handle empty lines
       elements.push(<div key={i}>&nbsp;</div>);
     } else {
-      // Handle regular lines with inline code
       elements.push(
         <div key={i}>
           {renderLineWithInlineCode(line)}
@@ -100,32 +67,23 @@ function parseMarkdown(md: string): React.ReactNode[] {
   return elements;
 }
 
-/**
- * Render a line with inline code highlighting
- */
 function renderLineWithInlineCode(line: string): React.ReactNode {
   const parts = line.split(/(`[^`]+`)/g);
 
   return parts.map((part, index) => {
     if (part.startsWith("`") && part.endsWith("`")) {
-      // This is inline code
       return (
         <span key={index} className="bg-gray-200 dark:bg-gray-800 px-1 rounded">
           {part}
         </span>
       );
     }
-    // Regular text
     return part;
   });
 }
 
-/**
- * Markdown block for AGENTS.md examples.
- */
 export default function CodeExample({
   code,
-  href,
   compact = false,
   heightClass,
   centerVertically = false,
@@ -182,9 +140,7 @@ export default function CodeExample({
               : "min-h-[250px] max-h-[500px]"
           } border border-gray-200 dark:border-gray-700 shadow-sm`}
         >
-          <code>
-            {parseMarkdown(md)}
-          </code>
+          <code>{parseMarkdown(md)}</code>
         </pre>
       </div>
     </>
@@ -198,7 +154,7 @@ export default function CodeExample({
     <section className="px-6 pt-10 pb-24 bg-gray-50 dark:bg-gray-900/40">
       <div className="max-w-5xl mx-auto flex flex-col gap-6">
         <h2 className="text-3xl font-semibold tracking-tight">
-          AGENTS.md in action
+          Ready-to-run workflows
         </h2>
         {content}
       </div>
