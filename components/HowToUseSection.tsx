@@ -4,47 +4,43 @@ import React from "react";
 export default function HowToUseSection() {
   const steps = [
     {
-      title: "Add AGENTS.md",
+      title: "Deploy the tablet flow",
       body: (
         <>
-          Create an AGENTS.md file at the root of the repository. Most
-          coding agents can even scaffold one for you if you ask nicely.
+          Mount the web app on advisor tablets, connect your card processor,
+          and scan VIN/license data before the vehicle leaves the lift.
         </>
       ),
     },
     {
-      title: "Cover what matters",
+      title: "Switch on lien automation",
       body: (
         <>
-          <p className="mb-2">Add sections that help an agent work effectively with your project. Popular choices:</p>
-          <ul className="list-disc list-inside ml-4 space-y-1">
-            <li>Project overview</li>
-            <li>Build and test commands</li>
-            <li>Code style guidelines</li>
-            <li>Testing instructions</li>
-            <li>Security considerations</li>
-          </ul>
+          Choose a grace period, storage fee schedule, and lien disclosure
+          language. The app applies the flag automatically when balances remain.
         </>
       ),
     },
     {
-      title: "Add extra instructions",
-      body: "Commit messages or pull request guidelines, security gotchas, large datasets, deployment steps: anything you’d tell a new teammate belongs here too.",
+      title: "Enforce warranty releases",
+      body:
+        "Require approval codes, attach photo evidence, and block release until finance clears the RO or adds a waiver.",
     },
     {
-      title: "Large monorepo? Use nested AGENTS.md files for subprojects",
+      title: "Schedule outreach",
       body: (
         <>
-          Place another AGENTS.md inside each package. Agents automatically read the nearest file in the directory tree, so the closest one takes precedence and every subproject can ship tailored instructions. For example, at time of writing the main OpenAI repo has 88 AGENTS.md files.
+          Configure SMS/email nudges and run a workflow that sends the
+          accounting email once weekly so the team starts Monday with a
+          prioritized follow-up list.
         </>
       ),
     },
   ];
 
-
   return (
     <Section
-      title="How to use AGENTS.md?"
+      title="How it rolls out"
       className="py-12"
       center
       maxWidthClass="max-w-3xl"
@@ -55,9 +51,7 @@ export default function HowToUseSection() {
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               {idx + 1}. {s.title}
             </h3>
-            <div className="text-gray-700 dark:text-gray-300">
-              {s.body}
-            </div>
+            <div className="text-gray-700 dark:text-gray-300">{s.body}</div>
           </div>
         ))}
       </div>

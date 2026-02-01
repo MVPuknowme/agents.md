@@ -10,36 +10,20 @@ interface FAQItem {
 export default function FAQ() {
   const faqItems: FAQItem[] = [
     {
-      question: "Are there required fields?",
+      question: "Can we block releases until liens are cleared?",
       answer:
-        "No. AGENTS.md is just standard Markdown. Use any headings you like; the agent simply parses the text you provide.",
+        "Yes. Release buttons stay locked whenever a lien flag is present and the balance is above zero. Warranty-only jobs require an approval code before the block is lifted.",
     },
     {
-      question: "What if instructions conflict?",
-      answer:
-        "The closest AGENTS.md to the edited file wins; explicit user chat prompts override everything.",
-    },
-    {
-      question: "Will the agent run testing commands found in AGENTS.md automatically?",
-      answer:
-        "Yes—if you list them. The agent will attempt to execute relevant programmatic checks and fix failures before finishing the task.",
-    },
-    {
-      question: "Can I update it later?",
-      answer: "Absolutely. Treat AGENTS.md as living documentation.",
-    },
-    {
-      question: "How do I migrate existing docs to AGENTS.md?",
+      question: "How do we run a workflow that sends the email once weekly?",
       answer: (
         <>
-          <p className="mb-2">
-            Rename existing files to AGENTS.md and create symbolic links for backward compatibility:
-          </p>
+          <p className="mb-2">Use the built-in scheduler to send the accounting email every Sunday at 6pm:</p>
           <div className="w-full flex justify-center">
             <CodeExample
-              code="mv AGENT.md AGENTS.md && ln -s AGENTS.md AGENT.md"
+              code={`workflow: accounting-digest\nschedule: "0 18 * * SUN"\nactions:\n  - email: finance@dealership.com\n  - attach: unpaid-tickets.csv`}
               compact
-              heightClass="min-h-[48px]"
+              heightClass="min-h-[64px]"
               centerVertically
             />
           </div>
@@ -47,42 +31,19 @@ export default function FAQ() {
       ),
     },
     {
-      question: "How do I configure Aider?",
-      answer: (
-        <>
-          <p className="mb-2">
-            Configure Aider to use AGENTS.md in <code>.aider.conf.yml</code>:
-          </p>
-          <div className="w-full flex justify-center">
-            <CodeExample
-              code="read: AGENTS.md"
-              compact
-              heightClass="min-h-[48px]"
-              centerVertically
-            />
-          </div>
-        </>
-      ),
+      question: "What happens when there is a warranty dispute?",
+      answer:
+        "Escalations route to finance with photos and prior approvals attached. You can pause storage fees until the dispute is resolved.",
     },
     {
-      question: "How do I configure Gemini CLI?",
-      answer: (
-        <>
-          <p className="mb-2">
-            Configure Gemini CLI to use AGENTS.md in <code>.gemini/settings.json</code>:
-          </p>
-          <div className="w-full flex justify-center">
-            <CodeExample
-              code='{
-  "contextFileName": "AGENTS.md"
-}'
-              compact
-              heightClass="min-h-[48px]"
-              centerVertically
-            />
-          </div>
-        </>
-      ),
+      question: "Do we need internet in the bay?",
+      answer:
+        "Offline capture is supported. Tablet sessions queue signatures, scans, and charges until connectivity returns, then sync automatically.",
+    },
+    {
+      question: "Can we export lien records for filings?",
+      answer:
+        "Yes. Download a PDF ledger or push data to your DMS/CRM via webhook or SFTP so legal has what they need without extra work.",
     },
   ];
 

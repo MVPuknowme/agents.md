@@ -8,55 +8,55 @@ export default function WhySection() {
   return (
     <Section
       id="why"
-      title="Why AGENTS.md?"
+      title="Why tablet pay + mechanic liens?"
       className="pt-24 pb-12"
       center
       maxWidthClass="max-w-3xl"
     >
       <div className="space-y-4">
         <p className="mb-4">
-          README.md files are for humans: quick starts, project descriptions,
-          and contribution guidelines.
+          Customers sign in the bay, advisors collect payment intents on the
+          spot, and lien acknowledgements are baked into the flow. Your team
+          never guesses whether a vehicle can leave.
         </p>
         <p className="mb-4">
-          AGENTS.md complements this by containing the extra, sometimes detailed
-          context coding agents need: build steps, tests, and conventions that
-          might clutter a README or aren&rsquo;t relevant to human contributors.
+          The same workflow powers warranty jobs: capture approvals, store
+          supporting photos, and release vehicles only when coverage is
+          validated or balances are cleared.
         </p>
-        <p className="mb-4">We intentionally kept it separate to:</p>
+        <p className="mb-4">Teams keep coming back because it:</p>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <ClipboardIcon />
             <p>
-              <span className="font-semibold block">
-                Give agents a clear, predictable place for instructions.
-              </span>
+              <span className="font-semibold block">Digitizes lien notices.</span>
+              Every job gets a signed lien disclosure and release checklist the
+              moment work starts.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <UserIcon />
             <p>
-              <span className="font-semibold block">
-                Keep READMEs concise and focused on human contributors.
-              </span>
+              <span className="font-semibold block">Protects technicians.</span>
+              Prevent unauthorized hand-offs by tying release approval to
+              payment status and warranty confirmation.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <LinkIcon />
             <p>
-              <span className="font-semibold block">
-                Provide precise, agent-focused guidance that complements
-                existing README and docs.
-              </span>
+              <span className="font-semibold block">Keeps accounting in sync.</span>
+              Weekly digests summarize unpaid vehicles, lien flags, and stored
+              card authorizations so follow-up is automatic.
             </p>
           </div>
         </div>
         <p>
-          Rather than introducing another proprietary file, we chose a name and
-          format that could work for anyone. If you&rsquo;re building or using
-          coding agents and find this helpful, feel free to adopt it.
+          Think of it as a modern cashier desk that travels with every tablet:
+          predictable releases, fewer disputes, and a clean audit trail for
+          state lien requirements.
         </p>
       </div>
     </Section>
