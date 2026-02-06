@@ -9,6 +9,7 @@ import CompatibilitySection from "@/components/CompatibilitySection";
 import { GetStaticProps } from "next";
 import WhySection from "@/components/WhySection";
 import AboutSection from "@/components/AboutSection";
+import DuneConnectSection from "@/components/DuneConnectSection";
 
 interface LandingPageProps {
   contributorsByRepo: Record<string, { avatars: string[]; total: number }>;
@@ -19,6 +20,7 @@ export default function LandingPage({ contributorsByRepo }: LandingPageProps) {
     <div className="flex flex-col min-h-screen items-stretch font-sans">
       <main>
         <Hero />
+        <DuneConnectSection />
         <WhySection />
         <CompatibilitySection />
         <ExamplesSection contributorsByRepo={contributorsByRepo} />
