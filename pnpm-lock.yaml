@@ -2779,4 +2779,91 @@ packages:
   /yallist@5.0.0:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
-    dev: false
+    dev: true
+version: 2.1
+profile: michael-mvpuknowme
+
+operator:
+  name: Michael Vincent Patrick
+  mode: mobile-operator-runtime
+  dashboard: aura-core-mobile
+  authority: root-eye
+
+network:
+  name: aura-property-grid
+  region: us-west
+  sync_mode: cloud-heartbeat
+  heartbeat_interval_min: 1440
+  runtime_engine: operator-runtime-v1
+
+cloud:
+  provider_bridge:
+    aws: true
+    azure: false
+    fallback_edge: true
+  api_sources:
+    figment:
+      enabled: true
+      endpoint: https://datahub.figment.io/app/cosmos/mainnet/status
+      schedule_min: 1440
+      health_weight: 0.6
+
+runtime:
+  scheduler:
+    mode: daily
+    simulate_if_offline: true
+  telemetry:
+    mobile_safe: true
+    write_back_to_yaml: true
+  income_projection:
+    enabled: true
+    model: conservative-sim
+    note: "projection only, not financial execution"
+
+properties:
+
+  - alias: MVP-LaPine-Core
+    location: La Pine, OR
+    state_machine:
+      lease_state: development
+      solar_status: simulated
+    validator:
+      enabled: true
+      mode: solar
+      heartbeat_min: 1440
+    sensors:
+      frequency_detection: true
+    routing:
+      wallet: 0xbAA5A03bC268546194550a427d3F1d5787c15403
+      cloudflare_dns: enabled
+
+  - alias: MVP-Silverton-Zone
+    location: Silverton, OR
+    state_machine:
+      lease_state: sentinel
+      solar_status: simulated
+    validator:
+      enabled: true
+      mode: sentinel
+      heartbeat_min: 1440
+    sensors:
+      motion: true
+    routing:
+      wallet: 0xbAA5A03bC268546194550a427d3F1d5787c15403
+
+  - alias: MVP-Sunrise-Node
+    location: Sunrise
+    state_machine:
+      lease_state: planned
+    validator:
+      enabled: false
+      planned_activation: true
+    routing:
+      wallet: 0xbAA5A03bC268546194550a427d3F1d5787c15403
+
+logging:
+  daily_trace: true
+  export: csv
+  auto_commit: true
+  eye_orchestration_log: enabled
+
