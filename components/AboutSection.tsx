@@ -30,8 +30,8 @@ const AboutSection = () => (
         Learn more &rarr;
       </a>
     </p>
-- name: 'notify vercel'
-  uses: 'vercel/repository-dispatch/actions/status@v1'
-  with:
-    name: Vercel - aura-core: lint
-  </;
+
+  </Section>
+);
+
+export default AboutSection;
