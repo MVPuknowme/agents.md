@@ -1,0 +1,28 @@
+{
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "env": {
+    "NEXT_PUBLIC_SKYGRID_MODE": "aws-linked",
+    "NEXT_PUBLIC_SKYGRID_NETWORK": "production",
+    "NEXT_PUBLIC_AWS_REGION": "@aws_region",
+    "NEXT_PUBLIC_SKYGRID_API_BASE": "@skygrid_api_base",
+    "NEXT_PUBLIC_SKYGRID_HEALTH_URL": "@skygrid_health_url"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-SKYGRID-Link",
+          "value": "aws-vercel"
+        },
+        {
+          "key": "X-Aura-Core-Mode",
+          "value": "verified-frontdoor"
+        }
+      ]
+    }
+  ]
+}
