@@ -1,0 +1,21 @@
+{
+  "info": {
+    "name": "SkyGrid Runtime Proof Lane",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {"name":"health","request":{"method":"GET","url":"{{baseUrl}}/health.json"}},
+    {"name":"interface manifest","request":{"method":"GET","url":"{{baseUrl}}/api/interface"}},
+    {"name":"ai preflight","request":{"method":"GET","url":"{{baseUrl}}/api/ai/preflight"}},
+    {"name":"intake","request":{"method":"GET","url":"{{baseUrl}}/api/intake"}},
+    {"name":"pay quote","request":{"method":"GET","url":"{{baseUrl}}/api/pay/quote?amount=25"}},
+    {"name":"stripe device link","request":{"method":"GET","url":"{{baseUrl}}/api/stripe/device-link"}},
+    {"name":"highway status","request":{"method":"GET","url":"{{baseUrl}}/api/highway/status"}},
+    {"name":"highway flasks","request":{"method":"GET","url":"{{baseUrl}}/api/highway/flasks"}},
+    {"name":"dispatch","request":{"method":"GET","url":"{{baseUrl}}/dispatch"}},
+    {"name":"rates","request":{"method":"GET","url":"{{baseUrl}}/rates"}}
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "https://example.vercel.app"}
+  ]
+}
