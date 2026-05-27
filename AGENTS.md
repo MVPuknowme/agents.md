@@ -111,7 +111,99 @@ This repo must not implement or advertise:
 - surveillance features,
 - secret collection.
 
-## 7. Useful Commands
+## 7. Agent Execution Training
+
+Agents should act like careful release engineers, not autonomous operators.
+
+Default behavior:
+
+- inspect the current file before editing it,
+- keep changes small and reviewable,
+- prefer one concern per commit,
+- explain verification evidence in commit messages or PR notes,
+- leave rollback paths intact,
+- preserve existing naming unless the task explicitly asks for a rename.
+
+Do not:
+
+- invent live network status,
+- claim a deployment succeeded without CI, Vercel, or health endpoint proof,
+- convert advisory routing copy into claims of automatic carrier-grade failover,
+- move secrets into client-side code,
+- replace verified public language with hype.
+
+## 8. SkyGrid Routing and Failover Language
+
+SkyGrid public copy should describe routing as advisory, testable, and evidence-backed.
+
+Allowed concepts:
+
+- failover recommendation,
+- endpoint health checks,
+- region comparison,
+- public health manifest,
+- dispatcher demo mode,
+- local-first validation,
+- cloud-reserve fallback,
+- edge-cached public front door.
+
+Require explicit proof before claiming:
+
+- automated OS-level network switching,
+- carrier production integration,
+- live emergency dispatch authority,
+- national or global production coverage,
+- guaranteed bandwidth savings,
+- guaranteed income or yield.
+
+## 9. Issue-to-Commit Discipline
+
+When a task mentions Linear, GitHub Issues, Postman, Vercel, AWS, or B12:
+
+1. identify the specific blocker,
+2. make the smallest code or documentation change that reduces that blocker,
+3. add or update a test when the behavior is executable,
+4. keep public wording aligned with verified evidence,
+5. commit with a conventional message.
+
+Preferred commit prefixes:
+
+- `docs:` for public copy, architecture notes, and agent guidance,
+- `fix:` for broken behavior,
+- `test:` for verification coverage,
+- `chore:` for dependency, CI, and repo maintenance,
+- `feat:` only when user-visible capability is added.
+
+## 10. CI and Verification Gates
+
+The repository CI currently installs dependencies with pnpm and runs `pnpm run lint`.
+Agents should keep this path green.
+
+Before claiming completion, verify as much of the following as the environment allows:
+
+1. `pnpm install --frozen-lockfile`,
+2. `pnpm run lint`,
+3. `pnpm test` when executable behavior changes,
+4. Vercel build or deployment status when deployment behavior changes,
+5. `/health.json` after deploy when public health status is touched.
+
+If verification cannot be run, state exactly what was not verified and why.
+
+## 11. Content Architecture Rules
+
+The site should remain understandable to a first-time visitor in under one minute.
+
+Public pages should answer:
+
+- what SkyGrid is,
+- what problem it solves,
+- what is live versus planned,
+- what proof exists,
+- how a pilot partner can engage.
+
+Avoid burying key proof, contact paths, or health indicators behind vague slogans.
+
+## 12. Useful Commands
 
 | Command | Purpose |
 | --- | --- |
@@ -120,8 +212,9 @@ This repo must not implement or advertise:
 | `pnpm lint` | Run the TypeScript check configured for this repo. |
 | `pnpm test` | Run the repository test suite. |
 | `pnpm build` | Production build; use in CI/Vercel or explicit verification only. |
+| `pnpm endpoint:matrix` | Generate the endpoint matrix artifact when endpoint configuration changes. |
 
-## 8. Recommended Next Verification
+## 13. Recommended Next Verification
 
 After dependency/security changes, verify:
 
