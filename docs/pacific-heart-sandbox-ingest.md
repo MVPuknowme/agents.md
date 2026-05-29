@@ -44,3 +44,18 @@ The endpoint emits a handoff packet with:
 - `handoff.state`: `accepted_for_processing`
 
 This keeps intake proof-first and bounded to sandbox processing.
+
+## Responder-facing emergency summary
+
+- `GET /api/emergency/pacific-heart/responder-summary` returns the responder sandbox view derived from the checked-in Pacific Heart sandbox event.
+- `POST /api/emergency/pacific-heart/responder-summary` validates the supplied normalized event, builds the SkyGrid handoff packet, and returns the responder summary only when validation passes.
+
+The responder summary is intentionally narrower than the intake handoff. It exposes only pre-arrival context needed for a safe sandbox responder view:
+
+- event ID, event type, and occurrence time;
+- sandbox alert labels;
+- heart rate and blood pressure values;
+- sandbox coordinate when present;
+- short pre-arrival notes that instruct responders to confirm in the field.
+
+The privacy gate explicitly excludes patient identifiers, full chart data, contact details, insurance details, and autonomous treatment instructions. The sandbox responder view is marked `operatorReviewRequired: true` so the public proof flow stays bounded to validated test data and supervised emergency workflow language.
