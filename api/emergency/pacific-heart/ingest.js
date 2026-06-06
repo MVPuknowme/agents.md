@@ -1,6 +1,8 @@
 const {
   sandboxPayload,
   validatePacificHeartPayload,
+  buildIncidentReplayEvidence,
+  buildSandboxAuditTrail,
   buildSkyGridHandoff,
 } = require('../../../src/emergency/pacific-heart-ingest');
 
@@ -14,6 +16,8 @@ module.exports = function handler(req, res) {
         accepted: true,
         intakeId: 'string',
         handoff: 'skygrid.emergency.ingest',
+        auditTrail: 'redacted stage events',
+        replayEvidence: 'sandbox replay sequence',
       },
     });
     return;
@@ -28,16 +32,26 @@ module.exports = function handler(req, res) {
   const validation = validatePacificHeartPayload(payload);
 
   if (!validation.ok) {
-    res.status(400).json({ accepted: false, error: validation.error });
+    const auditTrail = buildSandboxAuditTrail(payload);
+
+    res.status(400).json({
+      accepted: false,
+      error: validation.error,
+      auditTrail,
+      replayEvidence: buildIncidentReplayEvidence(payload, { auditTrail }),
+    });
     return;
   }
 
   const handoffPacket = buildSkyGridHandoff(payload);
+  const auditTrail = buildSandboxAuditTrail(payload);
 
   res.status(202).json({
     accepted: true,
     intakeId: `intake_${payload.eventId}`,
     receivedAt: new Date().toISOString(),
     handoff: handoffPacket,
+    auditTrail,
+    replayEvidence: buildIncidentReplayEvidence(payload, { auditTrail }),
   });
 };
