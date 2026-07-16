@@ -49,3 +49,11 @@ that explains the project’s goals in a simple way, and featuring some examples
    npm run dev
    ```
 3. Open your browser and go to http://localhost:3000
+
+### Configuring asset delivery
+
+You can point static assets to a CDN or host the site under a nested path by
+setting the following environment variables before starting the app:
+
+- `ASSET_PREFIX`: URL prefix for static assets (for example, `https://cdn.example.com`).
+- `BASE_PATH`: Path segment for hosting the site in a subdirectory (for example, `/docs`).
