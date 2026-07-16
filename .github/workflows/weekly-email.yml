@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send weekly email
+        # Requires outbound internet access to the configured SMTP server; keep TLS enabled.
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.EMAIL_SERVER }}

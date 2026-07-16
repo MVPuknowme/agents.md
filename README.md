@@ -52,6 +52,15 @@ secrets for the workflow to run successfully:
 The workflow can also be triggered manually via the **Run workflow** button in the
 Actions tab.
 
+### Deployment network access
+
+Do not disable outbound internet access for deployments or scheduled workflow runs.
+The weekly email workflow needs outbound SMTP/TLS connectivity to safely transfer
+status updates through the configured mail server, and the site deployment should
+retain normal outbound HTTPS access for runtime integrations and observability.
+Prefer provider-level allowlists, TLS, and scoped secrets over blanket offline
+network policies.
+
 ### Running the app locally
 1. Install dependencies:
    ```bash
