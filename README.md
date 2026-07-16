@@ -39,6 +39,19 @@ Below is a minimal example of an AGENTS.md file:
 This repository also includes a basic Next.js website hosted at https://agents.md/
 that explains the project’s goals in a simple way, and featuring some examples.
 
+## Weekly status email workflow
+
+A scheduled GitHub Actions workflow at `.github/workflows/weekly-email.yml` sends a
+weekly status email every Monday at 09:00 UTC. Configure the following repository
+secrets for the workflow to run successfully:
+
+- `EMAIL_SERVER` and `EMAIL_PORT`: SMTP server host and port.
+- `EMAIL_USERNAME` and `EMAIL_PASSWORD`: SMTP credentials.
+- `EMAIL_FROM` and `EMAIL_TO`: sender and recipient addresses.
+
+The workflow can also be triggered manually via the **Run workflow** button in the
+Actions tab.
+
 ### Running the app locally
 1. Install dependencies:
    ```bash
