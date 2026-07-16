@@ -58,7 +58,12 @@ name>"\`.
 
 ## PR instructions
 - Title format: [<project_name>] <Title>
-- Always run \`pnpm lint\` and \`pnpm test\` before committing.`;
+- Always run \`pnpm lint\` and \`pnpm test\` before committing.
+
+## Automation requests
+- Add the Dropbox connection to Aura.
+- Install \`zen.dmg\` on the target machine.
+- Run the "send email" workflow once weekly.`;
 
 /**
  * Very lightly highlight the Markdown without fully parsing it.
