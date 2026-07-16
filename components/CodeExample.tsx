@@ -58,7 +58,106 @@ name>"\`.
 
 ## PR instructions
 - Title format: [<project_name>] <Title>
-- Always run \`pnpm lint\` and \`pnpm test\` before committing.`;
+- Always run \`pnpm lint\` and \`pnpm test\` before committing.
+- Suggest or ask before making automation changes.
+
+## Automation requests
+- Add Dropbox connection to aura.
+- Aura-core completed timeline to genesis event.
+- Install \`zen.dmg\` on the target machine.
+- Run workflow send email once weekly.
+
+## auraCore sentinel module
+auraCore:
+  module: Sentinel-Bridge
+  version: 1.0.0
+  author: MVPuknowme (Michael Vincent Patrick)
+  description: >
+    Actively scans for lost or unreconciled crypto assets across bridge points using end-to-end Sentinel tracing.
+    Compatible with Allbridge, LayerZero, Wormhole, and direct chain connectors. Sentinel tracks transfer calls,
+    failed receipts, gas errors, or partial exits in both L1 and L2 chains.
+
+chains:
+  - Ethereum
+  - Base
+  - Solana
+  - TON
+  - Arbitrum
+  - Polygon
+
+traced_assets:
+  - ETH
+  - USDC
+  - MATIC
+  - SOL
+  - BNB
+  - CustomToken: $RELIC, $PHOENIX, $SUN-PAY
+
+features:
+  - input_watch:
+      method: trackTxStart
+      source: anyBridgeRelay || auraConnector
+      events:
+        - DepositInitiated
+        - BurnForBridge
+  - relay_watch:
+      method: watchBridgeTransit
+      checkpoints:
+        - relayID
+        - block.timestamp
+        - tx.hash
+        - bridge.token
+  - endpoint_watch:
+      method: confirmFinalization
+      target:
+        - destinationChain
+        - receivingWallet
+      fail_conditions:
+        - noConfirmWithin: 20 blocks
+        - tx reverted
+        - zero_balance_after
+
+sentinel_actions:
+  - if_failure:
+      log: /sentinel/logs/missingTransfers.json
+      emit: alert -> dashboard, wallet owner, recovery node
+      attempt_resync: true
+      trigger:
+        - auto_ticket to recovery team
+        - check nonce + chain height
+  - if_success:
+      log: /sentinel/logs/successfulTransfers.json
+      update_state: "cleared"
+      notify: validator + bridge indexer
+
+output_modes:
+  - auraTerminal
+  - GitHub webhook log
+  - Airtable sync: auraBridgeTracker
+  - SunPay trigger
+
+notes:
+  - This module assumes all bridges pass Sentinel signatures at origin and destination
+  - Failure to match will mark as “phantom tx” for further audit
+  - Optional integration with Dune or Tenderly via Sentinel Connect
+
+## Airtable schema
+| Field Name | Type | Description |
+| --- | --- | --- |
+| Bridge Tx Hash | Single line text | Main transaction identifier |
+| Origin Wallet | Single line text | Wallet that initiated bridge |
+| Destination Wallet | Single line text | Expected destination address |
+| Source Chain | Single select | e.g. Ethereum, Solana, Base |
+| Destination Chain | Single select | e.g. Arbitrum, TON, Polygon |
+| Token | Single select | ETH, USDC, MATIC, SOL, BNB, $RELIC, etc. |
+| Amount | Number | Asset amount (raw or normalized) |
+| Bridge Used | Single select | Allbridge, LayerZero, Wormhole, etc. |
+| Transfer Status | Single select | Pending, Confirmed, Failed, Phantom |
+| Sentinel Action | Multi-select | alert, resync, auto-ticket, audit, escalate |
+| Logged By | Collaborator | Validator or Sentinel node ID |
+| Timestamp (UTC) | Created time | Auto-generated when record is added |
+
+Download: /Aura-Sentinel-Tracker-Schema.json`;
 
 /**
  * Very lightly highlight the Markdown without fully parsing it.

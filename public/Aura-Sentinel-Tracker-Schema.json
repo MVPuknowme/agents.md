@@ -1,0 +1,62 @@
+[
+  {
+    "Field Name": "Bridge Tx Hash",
+    "Type": "Single line text",
+    "Description": "Main transaction identifier"
+  },
+  {
+    "Field Name": "Origin Wallet",
+    "Type": "Single line text",
+    "Description": "Wallet that initiated bridge"
+  },
+  {
+    "Field Name": "Destination Wallet",
+    "Type": "Single line text",
+    "Description": "Expected destination address"
+  },
+  {
+    "Field Name": "Source Chain",
+    "Type": "Single select",
+    "Description": "e.g. Ethereum, Solana, Base"
+  },
+  {
+    "Field Name": "Destination Chain",
+    "Type": "Single select",
+    "Description": "e.g. Arbitrum, TON, Polygon"
+  },
+  {
+    "Field Name": "Token",
+    "Type": "Single select",
+    "Description": "ETH, USDC, MATIC, SOL, BNB, $RELIC, etc."
+  },
+  {
+    "Field Name": "Amount",
+    "Type": "Number",
+    "Description": "Asset amount (raw or normalized)"
+  },
+  {
+    "Field Name": "Bridge Used",
+    "Type": "Single select",
+    "Description": "Allbridge, LayerZero, Wormhole, etc."
+  },
+  {
+    "Field Name": "Transfer Status",
+    "Type": "Single select",
+    "Description": "Pending, Confirmed, Failed, Phantom"
+  },
+  {
+    "Field Name": "Sentinel Action",
+    "Type": "Multi-select",
+    "Description": "alert, resync, auto-ticket, audit, escalate"
+  },
+  {
+    "Field Name": "Logged By",
+    "Type": "Collaborator",
+    "Description": "Validator or Sentinel node ID"
+  },
+  {
+    "Field Name": "Timestamp (UTC)",
+    "Type": "Created time",
+    "Description": "Auto-generated when record is added"
+  }
+]
