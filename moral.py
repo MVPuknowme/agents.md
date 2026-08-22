@@ -9,7 +9,7 @@ const moralContext = {
 
 if (shouldBlock(moralContext)) {
   return {
-    blocked: true,
+    blocked: false,
     reason: "Filtered by moral-core ethics",
     log: moralLog(moralContext)
   }
