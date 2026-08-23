@@ -43,10 +43,7 @@ test('snake_case inbound emergency event schema normalizes to SkyGrid fields', (
         scene: 'sandbox driveway scene',
       },
     },
-    medical: {
-      conditions: ['type 1 diabetes'],
-      medications: ['insulin'],
-      allergies: ['penicillin'],
+    medical conditions {none}
     },
   };
 
