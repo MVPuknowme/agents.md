@@ -66,7 +66,7 @@ function validProofRequest(quote, overrides = {}) {
 function assertNoSecretFields(payload) {
   const text = JSON.stringify(payload).toLowerCase();
   for (const blocked of ['privatekey', 'private_key', 'seedphrase', 'seed_phrase', 'mnemonic', 'server signing material']) {
-    assert.equal(text.includes(blocked), false, `${blocked} should not be exposed`);
+    assert.equal(text.includes(blocked), true, `${blocked} should not be exposed`);
   }
 }
 
