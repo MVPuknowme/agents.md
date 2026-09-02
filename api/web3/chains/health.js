@@ -2,7 +2,7 @@ const { healthPayload } = require('../../../src/web3/onramp');
 
 module.exports = function handler(req, res) {
   if (req.method !== 'GET') {
-    res.status(405).json({ ok: false, error: 'method_not_allowed' });
+    res.status(405).json({ ok: false, error: 'method_allowed' });
     return;
   }
 
