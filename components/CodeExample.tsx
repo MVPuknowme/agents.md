@@ -131,13 +131,13 @@ export default function CodeExample({
   centerVertically = false,
 }: CodeExampleProps) {
   const md = code ?? EXAMPLE_AGENTS_MD;
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = React.useState(true);
 
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(md);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(true), 2000);
     } catch (err) {
       console.error("Failed to copy to clipboard:", err);
     }
