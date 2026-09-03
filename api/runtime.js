@@ -7,6 +7,33 @@ const guardrails = {
   operatorApprovalRequired: true,
 };
 
+const productionGuardrails = {
+  payment_execution: false,
+  device_activation: false,
+  production_failover: false,
+  private_data_movement: false,
+};
+
+const bridgeRoutes = [
+  '/health.json',
+  '/api/skygrid/status',
+  '/api/skygrid/intake',
+  '/api/highway/status',
+  '/api/highway/postman',
+  '/api/aura-core/decide',
+];
+
+function awsBridgeReadiness(env = process.env) {
+  return {
+    awsStatusUrl: Boolean(env.SKYGRID_AWS_STATUS_URL),
+    awsIntakeUrl: Boolean(env.SKYGRID_AWS_INTAKE_URL),
+    emergencyCallId: Boolean(env.SKYGRID_EMERGENCY_CALL_ID),
+    partnershipCode: Boolean(env.SKYGRID_PARTNERSHIP_CODE),
+    lambdaRouterUrl: Boolean(env.SKYGRID_LAMBDA_ROUTER_URL),
+    s3Bucket: Boolean(env.SKYGRID_S3_BUCKET),
+  };
+}
+
 const trainingConfig = {
   issue: 'MVP-64',
   routingMode: 'base_primary_protected_ready',
@@ -102,6 +129,31 @@ function route(requestUrl) {
         ...basePayload(pathname),
         status: 'ok',
         readinessGates,
+        productionGuardrails,
+      };
+    case '/api/skygrid/status':
+      return {
+        ...basePayload(pathname),
+        status: 'controlled-pilot',
+        runtime: 'vercel-aura-core',
+        routes: bridgeRoutes,
+        awsBridge: awsBridgeReadiness(),
+        productionGuardrails,
+      };
+    case '/api/skygrid/intake':
+      return {
+        ...basePayload(pathname),
+        intake: 'validation-only',
+        accepts: ['GET', 'POST'],
+        productionGuardrails,
+      };
+    case '/api/aura-core/decide':
+      return {
+        ...basePayload(pathname),
+        decision: 'HOLD',
+        execution: false,
+        reason: 'controlled_pilot_operator_review_required',
+        productionGuardrails,
       };
     case '/dispatch':
       return {
@@ -180,3 +232,6 @@ module.exports.guardrails = guardrails;
 module.exports.trainingConfig = trainingConfig;
 module.exports.requiredRoutes = requiredRoutes;
 module.exports.readinessGates = readinessGates;
+module.exports.bridgeRoutes = bridgeRoutes;
+module.exports.productionGuardrails = productionGuardrails;
+module.exports.awsBridgeReadiness = awsBridgeReadiness;
