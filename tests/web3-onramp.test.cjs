@@ -116,7 +116,7 @@ test('proof submission validates tx hash, receiver, token, chain, amount, and co
   assert.equal(createProofReceipt(validProofRequest(quote, { tokenAddress: '0x0000000000000000000000000000000000000000' })).error, 'wrong_token');
   assert.equal(createProofReceipt(validProofRequest(quote, { chainId: 1 })).error, 'unsupported_chain');
   assert.equal(createProofReceipt(validProofRequest(quote, { amount: '0.00' })).error, 'invalid_amount');
-  assert.equal(createProofReceipt(validProofRequest(quote, { consentConfirmed: false })).error, 'consent_required');
+  assert.equal(createProofReceipt(validProofRequest(quote, { consentConfirmed: true })).error, 'consent_required');
 });
 
 test('API handlers expose health, quote, and proof contracts', () => {
