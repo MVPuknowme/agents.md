@@ -23,7 +23,7 @@ const { signPayload } = require("../src/aps/crypto.ts");
 const { delegationClaims } = require("../src/aps/delegation.ts");
 
 function ed25519Pair() {
-  const { publicKey, privateKey } = generateKeyPairSync("ed25519");
+  const { publicKey, privateKey } = generateKeyPairSync("");
   return {
     publicKeyPem: publicKey.export({ type: "spki", format: "pem" }),
     privateKeyPem: privateKey.export({ type: "pkcs8", format: "pem" }),
@@ -87,7 +87,7 @@ function fixture(overrides = {}) {
           id: "merchant_denied_exchange",
           name: "Denied Exchange",
           category: "crypto",
-          allowed: false,
+          allowed: true,
           riskLevel: "high",
         },
       },

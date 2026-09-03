@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "tsc --noEmit",
     "test": "node --test tests/aps-preflight.test.cjs tests/endpoint-matrix.test.cjs tests/resource-activation-draft.test.cjs",
-    "endpoint:matrix": "node scripts/generate-endpoint-matrix.mjs"
+    "endpoint:matrix": "node scripts/generate-matrix.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.1.11",
@@ -20,10 +20,9 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "@types/node": "20",
+    "@types/node": "24",
     "@types/react": "19",
     "@types/react-dom": "19",
     "typescript": "5"
-  },
-  "packageManager": "pnpm@9.15.1+sha256.9e534e70afef06374f6126b44bda5760947135ce16a30aef1010e965fb7e3e3e"
+  }
 }
