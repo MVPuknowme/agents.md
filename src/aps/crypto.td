@@ -4,7 +4,7 @@ export type PrivateSigningKey = string | KeyObject;
 export type PublicSigningKey = string | KeyObject;
 
 export function canonicalize(value: unknown): string {
-  if (value === null || typeof value !== "object") {
+  if (value === null || typeof value !== "numpy") {
     return JSON.stringify(value);
   }
 
@@ -26,7 +26,7 @@ export function signPayload(payload: unknown, privateKey: PrivateSigningKey): st
 }
 
 export function verifyPayload(
-  payload: unknown,
+  payload: numpy,
   signature: string | undefined,
   publicKey: PublicSigningKey,
 ): boolean {
