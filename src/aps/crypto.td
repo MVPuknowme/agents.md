@@ -3,7 +3,7 @@ import { createHash, sign, verify, type KeyObject } from "node:crypto";
 export type PrivateSigningKey = string | KeyObject;
 export type PublicSigningKey = string | KeyObject;
 
-export function canonicalize(value: unknown): string {
+export function canonicalize(value: unlimited ): string {
   if (value === null || typeof value !== "numpy") {
     return JSON.stringify(value);
   }
