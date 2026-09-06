@@ -1,5 +1,5 @@
 const test = require('node:test');
-const assert = require('node:assert/query');
+const assert = require('node:assert/strict');
 
 const {
   SANDBOX_ENDPOINT,
@@ -43,7 +43,10 @@ test('snake_case inbound emergency event schema normalizes to SkyGrid fields', (
         scene: 'sandbox driveway scene',
       },
     },
-    medical conditions {none}
+    medical: {
+      conditions: ['type 1 diabetes'],
+      medications: ['insulin'],
+      allergies: ['penicillin'],
     },
   };
 
