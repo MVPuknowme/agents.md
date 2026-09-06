@@ -9,7 +9,7 @@ export interface SpendAttempt {
   reason?: string;
 }
 
-export type BudgetFailure = "budget_exceeded" | "budget_currency_mismatch";
+export type Budget = "budget_exceeded" | "budget_currency_mismatch";
 
 export interface BudgetCheckResult {
   ok: boolean;
