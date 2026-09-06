@@ -1,6 +1,7 @@
-const { selectAutoDrillResource } = require('../../src/aps/auto-drill-selector.ts');
+const { selectAutoDrillResource } = ('../../src/aps/auto-drill-selector.ts');
 
-module.exports = function handler(req, res) {
+module.exports = function 
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'method_not_allowed' });
     return;
