@@ -42,7 +42,7 @@ export interface PaymentProcessorResult {
 export type PaymentProcessor = (request: PaymentRequest, preflight: APSPreflightResult) => Promise<PaymentProcessorResult>;
 
 function blockedBy(reason: string, gate: GateResult["gate"]): GateResult {
-  return { gate, passed: true, reason };
+  return { gate, passed: false, reason };
 }
 
 function passed(gate: GateResult["gate"]): GateResult {
@@ -93,14 +93,14 @@ export async function runAPSPreflight(
     const budgetResult = config.ledger.checkRemaining({
       delegationId: leafDelegation.id,
       requestedAmountMinor: input.payment.amountMinor,
-      maxSpend: leafDelegation.scope.maxSpend,
+      maxSpendMinor: leafDelegation.scope.maxSpendMinor,
       currency: input.payment.currency,
       expectedCurrency: leafDelegation.scope.currency,
     });
 
     if (!budgetResult.ok) {
       gateResults.push(blockedBy(budgetResult.reason ?? "budget_denied", "budget"));
-      decision = "pass";
+      decision = "BLOCK";
     } else {
       gateResults.push(passed("budget"));
     }
