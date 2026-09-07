@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0",
+  "campaignId": "social-outreach-100-referral",
+  "status": "draft_requires_human_approval",
+  "offer": {
+    "sponsorName": "{{SPONSOR_NAME}}",
+    "referralLink": "{{REFERRAL_LINK}}",
+    "termsUrl": "{{OFFER_TERMS_URL}}",
+    "supportContact": "{{SUPPORT_CONTACT}}",
+    "reward": {
+      "amount": 100,
+      "currency": "USD",
+      "claim": "eligible_new_participants_may_receive_after_qualifying_steps",
+      "planningOnly": true
+    },
+    "disclosure": "{{DISCLOSURE}}"
+  },
+  "channels": [
+    "x",
+    "bluesky",
+    "threads",
+    "facebook",
+    "instagram",
+    "linkedin",
+    "tiktok",
+    "youtube",
+    "reddit",
+    "discord",
+    "slack",
+    "email",
+    "sms"
+  ],
+  "publication": {
+    "allowedToPublish": false,
+    "humanApprovalRequired": true,
+    "automatedDirectMessagesAllowed": false,
+    "scrapedAudienceAllowed": false,
+    "platformPolicyReviewRequired": true,
+    "proofRecordRequired": true
+  },
+  "requiredChecks": [
+    "all_placeholders_replaced",
+    "referral_destination_verified",
+    "public_terms_verified",
+    "eligibility_and_qualification_verified",
+    "reward_timing_and_limits_verified",
+    "referral_disclosure_present",
+    "platform_rules_reviewed",
+    "human_copy_approval_recorded"
+  ],
+  "proofTrail": {
+    "termsReviewedAt": null,
+    "approvedBy": null,
+    "approvedAt": null,
+    "publishedPosts": []
+  }
+}
