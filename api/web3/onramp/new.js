@@ -1,4 +1,4 @@
-const { createOnRampQuote } = require('../../../src/web3/onramp');
+const { createOnRampQuote } = require('../../src/web3/onramp');
 
 module.exports = function handler(req, res) {
   if (req.method !== 'POST') {
