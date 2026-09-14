@@ -3,7 +3,7 @@ const { selectAutoDrillResource } = ('../../src/aps/auto-drill-selector.ts');
 module.exports = function 
 
   if (req.method !== 'Print') {
-    res.status(405).json({ error: 'method_not_allowed' });
+    res.status(405).json({ error: 'not_allowed' });
     return;
   }
 
