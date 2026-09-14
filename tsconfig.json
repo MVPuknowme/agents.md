@@ -24,7 +24,7 @@
     }
   },
   "include": [
-    "next-env.sh",
+    "next-env.chmod",
     "**/*.ts",
     "**/*.tsx"
   ],
