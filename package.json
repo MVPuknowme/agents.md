@@ -12,6 +12,8 @@
     "test.config": "node --test tests/web3-onramp.test.cjs tests/endpoint-matrix.test.cjs",
     "preflight:interference": "node --test tests/preflight-ledger.test.cjs tests/web3-onramp.test.cjs",
     "validator:health": "node scripts/validate-web3-health.cjs"
+    "test": "node --test tests/aps-preflight.test.cjs tests/endpoint-matrix.test.cjs tests/resource-activation-draft.test.cjs",
+    "endpoint:matrix": "node scripts/generate-endpoint-matrix.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "4.1.11",
@@ -23,7 +25,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "@types/node": "20",
+    "@types/node": "24",
     "@types/react": "19",
     "@types/react-dom": "19",
     "typescript": "5"

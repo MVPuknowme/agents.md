@@ -182,9 +182,7 @@ export default function CodeExample({
               : "min-h-[250px] max-h-[500px]"
           } border border-gray-200 dark:border-gray-700 shadow-sm`}
         >
-          <code>
-            {parseMarkdown(md)}
-          </code>
+          <code>{parseMarkdown(md)}</code>
         </pre>
       </div>
     </>
@@ -197,9 +195,7 @@ export default function CodeExample({
   return (
     <section className="px-6 pt-10 pb-24 bg-gray-50 dark:bg-gray-900/40">
       <div className="max-w-5xl mx-auto flex flex-col gap-6">
-        <h2 className="text-3xl font-semibold tracking-tight">
-          AGENTS.md in action
-        </h2>
+        <h2 className="text-3xl font-semibold tracking-tight">AGENTS.md in action</h2>
         {content}
       </div>
     </section>
