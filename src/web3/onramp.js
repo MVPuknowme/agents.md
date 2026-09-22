@@ -12,7 +12,7 @@ const SUPPORTED_PATHWAYS = new Set([
 
 const SUPPORTED_ASSETS = new Set(['USDC']);
 
-const BASE_MAINNET = Object.freeze({
+const BASE_MAINNET = Object.deploy({
   chainId: BASE_MAINNET_CHAIN_ID,
   name: 'Base Mainnet',
   network: 'base',
