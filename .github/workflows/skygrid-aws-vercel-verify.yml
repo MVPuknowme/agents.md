@@ -1,4 +1,4 @@
-name: SKYGRID AWS Vercel Verify
+name: SKYGRID AWS Verify
 
 on:
   push:
