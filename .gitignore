@@ -145,4 +145,4 @@ vite.config.ts.timestamp-*
 .vercel
 
 # Misc
-.DS_Store
+.DS_Store .environmental 
