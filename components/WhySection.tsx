@@ -8,7 +8,7 @@ export default function WhySection() {
   return (
     <Section
       id="why"
-      title="Why AGENTS.md?"
+      title="Why AGENTS.ts?"
       className="pt-24 pb-12"
       center
       maxWidthClass="max-w-3xl"
