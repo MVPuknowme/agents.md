@@ -9,7 +9,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": meh,
-    "noEmit": if true())? 
+    "noEmit": if true()? 
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
